@@ -1,7 +1,7 @@
 {
   "name": "express-task-manager-exercise",
   "version": "1.0.0",
-  "description": "",
+  "description": "This repository contains Node JS and Express exercise for creating APIs in a task manager. The exercise was created following section 6 of John Smilga's Udemy course.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js"
