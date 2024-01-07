@@ -1,5 +1,9 @@
 // Requiring the 'mongoose' library for MongoDB interactions
 const mongoose = require('mongoose');
+// Importing the dotenv package for environment variable configuration
+const dotenv = require('dotenv');
+// Configuring dotenv and specifying the path for the environment variables file
+dotenv.config({ path: '../config.env' })
 
 /** Function to establish a connection to the MongoDB database
  * @param {string} url - MongoDB connection string.
@@ -12,7 +16,9 @@ const connectDB = (url) => {
         useCreateIndex: true,        // Ensure indexes are created when needed
         useFindAndModify: false,     // Disable 'findOneAndUpdate' and 'findOneAndDelete' to use 'updateOne' and 'deleteOne'
         useUnifiedTopology: true     // Use the new Server Discovery and Monitoring engine
-    });
+    }).then(() => {
+        console.log(`MongoDB database's (${process.env.MONGO_DB_DATABASE}) is successfully connected`);
+    })
 }
 
 // Exporting the 'connectDB' function to make it available for use in other parts of the application

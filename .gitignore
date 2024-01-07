@@ -4,4 +4,4 @@
 package-json.lock
 yarn.lock
 # Environment variables
-.env
+config.env
