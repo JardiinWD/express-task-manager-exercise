@@ -14,18 +14,15 @@ app.use(morgan('dev'))
 const tasks = require(`${__dirname}/routes/tasks`)
 // Requiring the 'connectDB' function from the 'db/connect' module
 const connectDB = require(`${__dirname}/db/connect`);
-// Middleware
+
+// Middlewares
 app.use(express.json())
+app.use(express.static('./public'))
+const notFound = require('./middleware/not-found')
+
 // Routes
 app.use('/api/v1/tasks', tasks)
-
-// Routes Structure
-
-// app.get('/api/v1/tasks')         - get all the tasks
-// app.post('/api/v1/tasks')        - create a new task
-// app.get('/api/v1/tasks/:id')     - get a single task
-// app.patch('/api/v1/tasks/:id')   - update task
-// app.delete('/api/v1/tasks/:id')  - delete task
+app.use(notFound)
 
 // Setting the MongoDB URI
 const mongoDbUri = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@${process.env.MONGO_DB_CLUSTER}/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`

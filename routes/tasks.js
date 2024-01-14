@@ -8,7 +8,8 @@ const {
     getTask,
     updateTask,
     deleteTask,
-    createTask
+    createTask,
+    editTask
 } = require('../controllers/tasks');
 
 // Defining routes for task operations
@@ -27,10 +28,11 @@ router.route('/').get(getAllTasks).post(createTask);
  * @route {GET} /tasks/:id
  * @route {PATCH} /tasks/:id
  * @route {DELETE} /tasks/:id
+ * @route {PUT} /tasks/:id
  * @param {Object} req - Express request object. Contains information about the client's request.
  * @param {Object} res - Express response object. Used to send a response to the client.
  */
-router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask);
+router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask).put(editTask);
 
 // Exporting the router to make it available for use in other parts of the application
 module.exports = router;
