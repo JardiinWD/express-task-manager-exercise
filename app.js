@@ -19,10 +19,13 @@ const connectDB = require(`${__dirname}/db/connect`);
 app.use(express.json())
 app.use(express.static('./public'))
 const notFound = require('./middleware/not-found')
+const errorHandlerMiddleware = require('./middleware/error-handler')
+
 
 // Routes
 app.use('/api/v1/tasks', tasks)
 app.use(notFound)
+app.use(errorHandlerMiddleware)
 
 // Setting the MongoDB URI
 const mongoDbUri = `mongodb+srv://${process.env.MONGO_DB_USERNAME}:${process.env.MONGO_DB_PASSWORD}@${process.env.MONGO_DB_CLUSTER}/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`
